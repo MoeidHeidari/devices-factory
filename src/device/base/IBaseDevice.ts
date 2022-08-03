@@ -14,7 +14,7 @@ export interface IBaseDevice{
     createdAt: Date
     updatedAt: Date
 
-    
+
     
 }
 
