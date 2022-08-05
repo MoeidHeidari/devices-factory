@@ -1,4 +1,6 @@
 import {v4 as uuidv4} from 'uuid';
+import { DeviceAction } from './action';
+import { DeviceEvent } from './event';
 export interface IBaseDevice{
     connect(): Promise<DeviceConnectionStatus>
     diconnect():Promise<DeviceConnectionStatus>
@@ -9,12 +11,26 @@ export interface IBaseDevice{
     name:string;
     type:DeviceTypes;
     subtype:DeviceSubTypes
-    config:JSON
-    error: Error
+    config:JSON;
+    error: Error;
+    events:DeviceEvents[]
+    actions: DeviceActions[]
     createdAt: Date
     updatedAt: Date
 
 
+    
+}
+
+interface DeviceEvents{
+    event: DeviceEvent,
+    actions?: DeviceEvent[],
+
+}
+
+interface DeviceActions{
+    action:DeviceAction;
+    events?:DeviceEvent[]
     
 }
 

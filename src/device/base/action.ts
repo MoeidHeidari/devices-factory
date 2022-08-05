@@ -1,4 +1,4 @@
-export class DeviceActions{
+export class DeviceAction{
     constructor(public action:IAction){
         if(action.parameters){
             if (action.parameters?.filter(element=>typeof element.value != element.type).length > 0){
