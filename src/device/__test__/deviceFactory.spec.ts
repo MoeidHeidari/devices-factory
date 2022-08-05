@@ -1,3 +1,5 @@
+
+import { IAction } from "../base";
 import { TemperatureControlDevice } from "../ClimateControlDevice";
 import { ClimateControlDeviceFactory, SensorDeviceFactory, SwitchableDeviceFactory, VisionDeviceFactory } from "../factories";
 import { MotionSensoreDevice } from "../sensorDevice";
@@ -12,7 +14,7 @@ describe("Testing switchable devices factory",()=>{
     })
     it("should create a new switchable device factory with createDeviceMethod",async()=>{
         const result=new SwitchableDeviceFactory();
-        const device=await result.createDevice(SwitchableDevice,"configuration")
+        const device=await result.createDevice<SwitchableDevice>(SwitchableDevice,"configuration")
         expect (device).toBeDefined()
         expect (device).toBeInstanceOf(SwitchableDevice)
     })
@@ -26,7 +28,7 @@ describe("Testing vision devices factory",()=>{
     })
     it("should create a new vision device factory with createDeviceMethod",async()=>{
         const result=new VisionDeviceFactory();
-        const device=await result.createDevice(VisionDevice,"configuration")
+        const device=await result.createDevice<VisionDevice>(VisionDevice,"configuration")
         expect (device).toBeDefined()
         expect (device).toBeInstanceOf(VisionDevice)
     })
@@ -40,7 +42,7 @@ describe("Testing climate control devices factory",()=>{
     })
     it("should create a new climate control device factory with createDeviceMethod",async()=>{
         const result=new ClimateControlDeviceFactory();
-        const device=await result.createDevice(TemperatureControlDevice,"configuration")
+        const device=await result.createDevice<TemperatureControlDevice>(TemperatureControlDevice,"configuration")
         expect (device).toBeDefined()
         expect (device).toBeInstanceOf(TemperatureControlDevice)
     })
@@ -54,7 +56,7 @@ describe("Testing sensor devices factory",()=>{
     })
     it("should create a new sensor device factory with createDeviceMethod",async()=>{
         const result=new SensorDeviceFactory();
-        const device=await result.createDevice(MotionSensoreDevice,"configuration")
+        const device=await result.createDevice<MotionSensoreDevice>(MotionSensoreDevice,"configuration")
         expect (device).toBeDefined()
         expect (device).toBeInstanceOf(MotionSensoreDevice)
     })

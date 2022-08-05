@@ -1,18 +1,21 @@
 import {v4 as uuidv4} from 'uuid';
-import { DeviceAction } from './action';
+import { IAction } from './action';
 import { DeviceEvent } from './event';
 export interface IBaseDevice{
     connect(): Promise<DeviceConnectionStatus>
     diconnect():Promise<DeviceConnectionStatus>
     getUid():Promise<string>
+    sendNotification(data:any):Promise<void>;
+    addAction(action:IAction):Function
+    RunAction(actionname:string):Function
 
 
     connectionState: DeviceConnectionStatus;
     name:string;
-    type:DeviceTypes;
-    subtype:DeviceSubTypes
+
     config:JSON;
-    error: Error;
+    error?: Error;
+    UUID:string;
     events:DeviceEvents[]
     actions: DeviceActions[]
     createdAt: Date
@@ -22,27 +25,28 @@ export interface IBaseDevice{
     
 }
 
-interface DeviceEvents{
-    event: DeviceEvent,
+export interface DeviceEvents{
+    event: Event,
     actions?: DeviceEvent[],
 
 }
 
-interface DeviceActions{
-    action:DeviceAction;
+export interface DeviceActions{
+    actionName:string
+    action:Function;
     events?:DeviceEvent[]
     
 }
 
-enum DeviceConnectionStatus{
+export enum DeviceConnectionStatus{
     connected="connected",
     disconnected="discunnected",
     pending="pending",
     failed="failed"
 }
 
-enum DeviceTypes{
+export enum DeviceTypes{
     
 }
 
-enum DeviceSubTypes{}
+export enum DeviceSubTypes{}
