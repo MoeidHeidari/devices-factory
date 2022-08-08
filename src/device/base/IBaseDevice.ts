@@ -6,6 +6,7 @@ export interface IBaseDevice{
     diconnect():Promise<DeviceConnectionStatus>
     getUid():Promise<string>
     sendNotification(data:any):Promise<void>;
+    addEvent(event:DeviceEvent): Event
     addAction(action:IAction):Function
     RunAction(actionname:string):Function
 
@@ -26,6 +27,7 @@ export interface IBaseDevice{
 }
 
 export interface DeviceEvents{
+    eventName:string,
     event: Event,
     actions?: DeviceEvent[],
 

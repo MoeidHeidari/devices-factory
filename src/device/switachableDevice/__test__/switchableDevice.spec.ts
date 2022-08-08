@@ -1,4 +1,4 @@
-import { IAction } from "../../base";
+import { DeviceEvent, IAction } from "../../base";
 import { SwitchableDeviceFactory } from "../../factories";
 import { SwitchableDevice } from "../switchableDevice";
 
@@ -33,6 +33,12 @@ describe("Test switchable device with defined actions and events",()=>{
         device.addAction(action)
         const actionResult=device.RunAction('testFunction');
         expect(actionResult).toBeInstanceOf(Function);
+    })
+    it("tests if we can make a device properly and add an event dynamically",async ()=>{
+        const result=new SwitchableDeviceFactory();
+        const device=await result.createDevice<SwitchableDevice>(SwitchableDevice,"configuration")
+        const event = new DeviceEvent({ name: "eventName", parameters: [{ name: "parameters", type: "number", default_value: 5 }] });
+        device.addEvent(event);
     })
 
 
